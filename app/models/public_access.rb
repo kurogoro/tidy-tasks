@@ -1,0 +1,2 @@
+class PublicAccess < ApplicationRecord
+end
