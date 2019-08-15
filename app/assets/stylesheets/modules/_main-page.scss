@@ -1,0 +1,23 @@
+.main-page {
+  &__body {
+    font-size: 0;
+    width: 100vw;
+    height: calc(100vh - 5.5rem + 2px);
+    @include clearfix();
+  }
+  &__header {
+    height: 4.0rem;
+    width: 100vw;
+    @include clearfix();
+    background: $gray;
+  }
+  &__footer {
+    position: relative;
+    bottom: 0;
+    height: 1.5rem;
+    width: 100vW;
+    @include clearfix();
+    background: $gray;
+    font-size: 0;
+  }
+}

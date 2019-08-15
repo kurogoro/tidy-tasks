@@ -1,0 +1,121 @@
+%table.main-page__body__table
+  %thead.main-page__body__table__inner.main-page__body__table__inner--top-sticky
+    %tr.main-page__body__table__inner__column
+      %th.main-page__body__table__inner__column__row.main-page__body__table__inner__column__row--cross-sticky
+        .main-page__body__table__inner__column__row__top-content
+          = form_tag "", method: :get, class:"main-page__body__table__inner__column__row__top-content__form" do
+            = select_tag :period, options_for_select([["年", 0], ["半年", 1], ["月", 2], ["週", 3], ["日", 4]], selected: 0), class: "main-page__body__table__inner__column__row__top-content__form__period"
+            .main-page__body__table__inner__column__row__top-content__form__date-input.main-page__body__table__inner__column__row__top-content__form__date-input--start
+              = select_tag :start_year, options_for_select([*2000..2030], selected: @days[0].year), class: "main-page__body__table__inner__column__row__top-content__form__date-input__year"
+              .main-page__body__table__inner__column__row__top-content__form__date-input__text /
+              = select_tag :start_month, options_for_select([*1..12], selected: @days[0].month), class: "main-page__body__table__inner__column__row__top-content__form__date-input__month"
+              .main-page__body__table__inner__column__row__top-content__form__date-input__text /
+              = select_tag :start_day, options_for_select([*1..31], selected: @days[0].day), class: "main-page__body__table__inner__column__row__top-content__form__date-input__month"
+            .main-page__body__table__inner__column__row__top-content__form__date-input.main-page__body__table__inner__column__row__top-content__form__date-input--end
+              .main-page__body__table__inner__column__row__top-content__form__date-input__text -
+              = select_tag :end_year, options_for_select([*2000..2030], selected: @days[@days.length-1].year), class: "main-page__body__table__inner__column__row__top-content__form__date-input__year"
+              .main-page__body__table__inner__column__row__top-content__form__date-input__text /
+              = select_tag :end_month, options_for_select([*1..12], selected: @days[@days.length-1].month), class: "main-page__body__table__inner__column__row__top-content__form__date-input__month"
+              .main-page__body__table__inner__column__row__top-content__form__date-input__text /
+              = select_tag :end_day, options_for_select([*1..31], selected: @days[@days.length-1].day), class: "main-page__body__table__inner__column__row__top-content__form__date-input__month"
+            = submit_tag "変更", class: "main-page__body__table__inner__column__row__top-content__form__submit-btn"
+      - @days.each do |day|
+        - if day.day == 1
+          %td.main-page__body__table__inner__column__row.main-page__body__table__inner__column__row--date-sticky.main-page__body__table__inner__column__row--date.main-page__body__table__inner__column__row--bg-gray
+            .main-page__body__table__inner__column__row__beginning
+              = link_to "", class: "main-page__body__table__inner__column__row__beginning__link" do
+                = icon 'fas', 'caret-left', class: "main-page__body__table__inner__column__row__beginning__link__icon"
+              .main-page__body__table__inner__column__row__beginning__text
+                = "#{day.year} / #{day.month}"
+              = link_to "", class: "main-page__body__table__inner__column__row__beginning__link" do
+                = icon 'fas', 'caret-right', class: "main-page__body__table__inner__column__row__beginning__link__icon"
+        - else
+          %td.main-page__body__table__inner__column__row.main-page__body__table__inner__column__row--date.main-page__body__table__inner__column__row--bg-gray
+            &nbsp;
+    %tr.main-page__body__table__inner__column
+      %th.main-page__body__table__inner__column__row.main-page__body__table__inner__column__row--cross-sticky.main-page__body__table__inner__column__row--cross-sticky--second
+        &nbsp;
+      - @days.each do |day|
+        %td{ class: set_class_today_top(day, @today, ["main-page__body__table__inner__column__row", "main-page__body__table__inner__column__row--date", "main-page__body__table__inner__column__row--bg-gray"]) }
+          .main-page__body__table__inner__column__row__text
+            = day.day
+    %tr.main-page__body__table__inner__column.main-page__body__table__inner__column--border-bottom-gray
+      %th.main-page__body__table__inner__column__row.main-page__body__table__inner__column__row--cross-sticky.main-page__body__table__inner__column__row--cross-sticky--second
+        &nbsp;
+      - @days.each do |day|
+        %td{ class: set_class_today(day, @today, ["main-page__body__table__inner__column__row", "main-page__body__table__inner__column__row--date", "main-page__body__table__inner__column__row--bg-gray"]) }
+          .main-page__body__table__inner__column__row__text
+            = t("date.abbr_day_names")[day.wday]
+    %tr.main-page__body__table__inner__column
+      %th.main-page__body__table__inner__column__row.main-page__body__table__inner__column__row--cross-sticky
+        .main-page__body__table__inner__column__row__top-content.main-page__body__table__inner__column__row__top-content--target
+          = link_to "", class: "main-page__body__table__inner__column__row__top-content__link" do
+            = icon 'fas', 'user', class: "main-page__body__table__inner__column__row__top-content__link__icon"
+          = link_to "", class: "main-page__body__table__inner__column__row__top-content__link" do
+            = "user name name name name name name"
+      - @days.each do |day|
+        %td{ class: set_class_today(day, @today, ["main-page__body__table__inner__column__row", "main-page__body__table__inner__column__row--date", "main-page__body__table__inner__column__row--bg-gray"]) }
+          .main-page__body__table__inner__column__row__text.main-page__body__table__inner__column__row__text--small.main-page__body__table__inner__column__row__text--ft-gray
+            = "000h"
+  %tbody.main-page__body__table__inner
+    - 5.times do |l|
+      %tr.main-page__body__table__inner__column.main-page__body__table__inner__column--day-sticky
+        %th.main-page__body__table__inner__column__row.main-page__body__table__inner__column__row--left-sticky.main-page__body__table__inner__column__row--border-bottom-light-gray
+          .main-page__body__table__inner__column__row__bar.main-page__body__table__inner__column__row__bar--gray
+          = link_to "", class: "main-page__body__table__inner__column__row__link" do
+            = icon 'fas', 'project-diagram', class: "main-page__body__table__inner__column__row__link__icon"
+          = link_to "", class: ["main-page__body__table__inner__column__row__link", "main-page__body__table__inner__column__row__link--project"] do
+            = "project#{l+1} name name name name name name"
+          = link_to "", class: "main-page__body__table__inner__column__row__link" do
+            = icon 'fas', 'chevron-up', class: "main-page__body__table__inner__column__row__link__icon"
+        - @days.each do |day|
+          %td{ class: set_class_today(day, @today, ["main-page__body__table__inner__column__row", "main-page__body__table__inner__column__row--date", "main-page__body__table__inner__column__row--bg-gray"]) }
+            .main-page__body__table__inner__column__row__text.main-page__body__table__inner__column__row__text--small.main-page__body__table__inner__column__row__text--ft-gray
+              = "000h"
+      - 4.times do |m|
+        %tr.main-page__body__table__inner__column.main-page__body__table__inner__column--wday-sticky
+          %th.main-page__body__table__inner__column__row.main-page__body__table__inner__column__row--left-sticky.main-page__body__table__inner__column__row--border-bottom-light-gray
+            .main-page__body__table__inner__column__row__bar.main-page__body__table__inner__column__row__bar--gray
+            .main-page__body__table__inner__column__row__bar.main-page__body__table__inner__column__row__bar--white
+            = link_to "", class: "main-page__body__table__inner__column__row__link" do
+              = icon 'fas', 'tags', class: "main-page__body__table__inner__column__row__link__icon"
+            = link_to "", class: ["main-page__body__table__inner__column__row__link", "main-page__body__table__inner__column__row__link--process"] do
+              = "process#{m+1} name name name name"
+            = link_to "", class: "main-page__body__table__inner__column__row__link" do
+              = icon 'fas', 'chevron-up', class: "main-page__body__table__inner__column__row__link__icon"
+          - @days.each do |day|
+            %td{ class: set_class_today(day, @today, ["main-page__body__table__inner__column__row", "main-page__body__table__inner__column__row--date", "main-page__body__table__inner__column__row--bg-gray"]) }
+              .main-page__body__table__inner__column__row__text.main-page__body__table__inner__column__row__text--small.main-page__body__table__inner__column__row__text--ft-gray
+                = "000h"
+        - 2.times do |n|
+          %tr.main-page__body__table__inner__column
+            %th.main-page__body__table__inner__column__row.main-page__body__table__inner__column__row--high.main-page__body__table__inner__column__row--left-sticky.main-page__body__table__inner__column__row--border-bottom-light-gray
+              .main-page__body__table__inner__column__row__bar.main-page__body__table__inner__column__row__bar--gray
+              .main-page__body__table__inner__column__row__bar.main-page__body__table__inner__column__row__bar--white
+              .main-page__body__table__inner__column__row__bar.main-page__body__table__inner__column__row__bar--gray
+              .main-page__body__table__inner__column__row__bar.main-page__body__table__inner__column__row__bar--white
+              = link_to "", class: "main-page__body__table__inner__column__row__link" do
+                = icon 'fas', 'file', class: "main-page__body__table__inner__column__row__link__icon"
+              = link_to "", class: ["main-page__body__table__inner__column__row__link", "main-page__body__table__inner__column__row__link--task"] do
+                = "task#{n+1} name name name name"
+            - @days.each_with_index do |day, i|
+              - if i == 0
+                %td{ class: set_class_today(day, @today, ["main-page__body__table__inner__column__row", "main-page__body__table__inner__column__row--date", "main-page__body__table__inner__column__row--high"]) }
+                  .main-page__body__table__inner__column__row__content
+                    %div{ class: "main-page__body__table__inner__column__row__content__range", style: "left:#{3.0 * (m + n + 1)}rem;width:#{3.0 * (n + 1)}rem;" }
+                      .main-page__body__table__inner__column__row__content__range__start-point
+                      %div{ class: "main-page__body__table__inner__column__row__content__range__bar", style: "width:#{3.0 * (n + 1) - 0.9}rem;" }
+                      .main-page__body__table__inner__column__row__content__range__end-point
+              - elsif i.between?(m + n + 1, m + n * 2 + 1)
+                %td{ class: set_class_today(day, @today, ["main-page__body__table__inner__column__row", "main-page__body__table__inner__column__row--date", "main-page__body__table__inner__column__row--high"]) }
+                  .main-page__body__table__inner__column__row__content
+                    .main-page__body__table__inner__column__row__content__hour.main-page__body__table__inner__column__row__content__hour--day
+                      = "0#{4}h"
+              - elsif i == m + n * 2 + 2
+                %td{ class: set_class_today(day, @today, ["main-page__body__table__inner__column__row", "main-page__body__table__inner__column__row--date", "main-page__body__table__inner__column__row--high", "main-page__body__table__inner__column__row--date-sticky"]) }
+                  .main-page__body__table__inner__column__row__content
+                    .main-page__body__table__inner__column__row__content__hour.main-page__body__table__inner__column__row__content__hour--days
+                      = "#{4 * (n + 1)}h ( #{day.year}/#{day.month}/#{day.day - ( n + 1 )} - #{day.year}/#{day.month}/#{day.day - 1} )"
+              - else
+                %td{ class: set_class_today(day, @today, ["main-page__body__table__inner__column__row", "main-page__body__table__inner__column__row--date", "main-page__body__table__inner__column__row--high"]) }
+                  &nbsp;
