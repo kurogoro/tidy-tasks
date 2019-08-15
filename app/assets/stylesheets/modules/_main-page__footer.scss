@@ -1,0 +1,25 @@
+.main-page__footer {
+  &__left {
+    float: left;
+    margin-left: 0.5rem;
+    &__copy-right {
+      line-height: 1.5rem;
+      padding: auto 0.5rem;
+      font-size: 0.5rem;
+    }
+  }
+  &__right {
+    float: right;
+    @include clearfix();
+    &__link {
+      display: block;
+      float: right;
+      margin: 0 0.5rem;
+      &__icon {
+        line-height: 1.5rem;
+        padding: auto 0.5rem;
+        font-size: 0.7rem;
+      }
+    }
+  }
+}

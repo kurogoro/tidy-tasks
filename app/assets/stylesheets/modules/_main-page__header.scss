@@ -1,0 +1,154 @@
+.main-page__header {
+  &__left {
+    float: left;
+    width: 17rem;
+    height: 4.0rem;
+    font-size: 0;
+    @include clearfix();
+    &__logo {
+      display: block;
+      float: left;
+      width: 2.0rem;
+      height: 2.0rem;
+      margin: 1.0rem;
+      background: $black;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+    &__title {
+      display: block;
+      float: left;
+      font-size: 2.0rem;
+      line-height: 4.0rem;
+      text-align: center;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+  &__right-top {
+    float: left;
+    width: calc(100vw - 17rem);
+    height: 2.0rem;
+    &__form-search {
+      position: relative;
+      top: calc((0.5rem - 2px) / 2);
+      -webkit-box-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      &__input {
+        height: 1.5rem;
+        width: calc(100vw - 17.2rem - 2px);
+        line-height: 1.5rem;
+        border-radius: 1.5rem;
+        border: 1px solid $gray;
+        background: $dark-white;
+        font-size: 0.7rem;
+      }
+      &__btn {
+        position: absolute;
+        top: 0.125rem;
+        right: 0.4rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        width: 1.5rem;
+        height: 1.5rem;
+        font-size: 0.7rem;
+        cursor: pointer;
+        background: none;
+      }
+    }
+  }
+  &__right-bottom {
+    float: left;
+    width: calc(100vw - 17rem);
+    height: 2.0rem;
+    @include clearfix();
+    &__left {
+      float: left;
+      &__tag {
+        display: inline-block;
+        position: relative;
+        padding: 0 0.2rem;
+        margin: 0 0.2rem;
+        cursor: pointer;
+        &:first-child {
+          margin-left: 0;
+        }
+        &__header {
+          font-size: 1.0rem;
+          &__link {
+            display: inline-block;
+            position: relative;
+            height: 2.0rem;
+            line-height: 2.0rem;
+            &:hover {
+              opacity: 0.7;
+            }
+            &__icon {
+              display: inline-block;
+              font-size: 0.7rem;
+            }
+            &__text {
+              display: inline-block;
+              font-size: 0.7rem;
+              vertical-align: middle;
+            }
+          }
+        }
+        &__menu {
+          position: absolute;
+          left: 0;
+          top: 2.0rem;
+          z-index: 10000;
+          background: $white;
+          &__item {
+            display: none;
+            width: 12.0rem;
+            &--active {
+              display: block;
+            }
+            &__link {
+              display: block;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              font-size: 0.7rem;
+              line-height: 2.0rem;
+              &:hover {
+                opacity: 0.7;
+              }
+            }
+          }
+        }
+      }
+    }
+    &__right {
+      float: right;
+      @include clearfix();
+      &__btn {
+        display: block;
+        float: right;
+        padding: 0 0.2rem;
+        margin: 0.25rem 0.2rem;
+        text-align: center;
+        line-height: 1.5rem;
+        font-size: 0.7rem;
+        border-radius: 0.5rem;
+        border: 1px solid $gray;
+        background: $white;
+        &:hover {
+          background: $dark-white;
+        }
+      }
+    }
+  }
+}
