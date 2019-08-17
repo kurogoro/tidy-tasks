@@ -2,8 +2,10 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 @import "./config/variable";
+@import "./config/fadeout";
 @import "./mixin/clearfix";
 @import "./modules/all-settings";
+@import "./modules/flash";
 @import "./modules/main-page";
 @import "./modules/main-page__body";
 @import "./modules/main-page__footer";

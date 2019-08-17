@@ -1,0 +1,32 @@
+.notification {
+  font-size: 0;
+  position: relative;
+  float: left;
+  height: 0;
+  width: 100%;
+  z-index: 1000;
+  &__message {
+    position: absolute;
+    float: left;
+    height: 1.0rem;
+    width: 100%;
+    color: $white;
+    text-align: center;
+    font-size: 0.7rem;
+    line-height: 1.0rem;
+    -webkit-animation: fade-out ease-out 4.5s;
+    animation: fade-out ease-out 4.5s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    opacity: 1;
+    -webkit-transition: all ease-out .3s;
+    transition: all ease-out .3s;
+    cursor: pointer;
+    &--notice {
+      background-color: $light_blue;
+    }
+    &--alert {
+      background-color: $alert_orange;
+    }
+  }
+}
