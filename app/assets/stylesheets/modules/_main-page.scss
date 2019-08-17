@@ -1,15 +1,18 @@
 .main-page {
+  font-size: 0;
   &__body {
-    font-size: 0;
     width: 100vw;
     height: calc(100vh - 5.5rem + 2px);
     @include clearfix();
+    font-size: 0;
+    overflow: scroll;
   }
   &__header {
     height: 4.0rem;
     width: 100vw;
     @include clearfix();
     background: $gray;
+    font-size: 0;
   }
   &__footer {
     position: relative;
