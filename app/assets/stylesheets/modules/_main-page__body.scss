@@ -334,7 +334,7 @@
     left: 0;
     top: 0;
     width: 4.0rem;
-    height: calc(100vh - 5.5rem + 2px);
+    min-height: calc(100vh - 5.5rem + 2px);
     background: $gray;
     &__link {
       display: block;
@@ -347,6 +347,84 @@
         opacity: 0.4;
         &--active {
           opacity: 1.0;
+        }
+      }
+    }
+  }
+  &__form {
+    display: block;
+    width: 30rem;
+    min-height: calc(100vh - 5.5rem + 2px);
+    margin: 0 auto;
+    background: $dark-white;
+    &__group {
+      width: 20rem;
+      margin: 0 auto;
+      padding: 0.6rem 0;
+      &--border-bottom {
+        border-bottom: 1px solid $dark-gray;
+      }
+      &__field {
+        padding: 0.6rem 0;
+        &__title {
+          text-align: center;
+          font-size: 1.5rem;
+          line-height: 1.5rem;
+        }
+        &__text {
+          text-align: right;
+          font-size: 0.7rem;
+          &__link {
+            color: $blue;
+            text-decoration: underline;
+          }
+        }
+        &__label {
+          font-size: 1.0rem;
+        }
+        &__mark {
+          display: inline-block;
+          height: 1.0rem;
+          width: 2.0rem;
+          margin: 0 0 0 0.5rem;
+          border-radius: 0.2rem;
+          color: $white;
+          font-size: 0.7rem;
+          line-height: 1.0rem;
+          text-align: center;
+          vertical-align: top;
+          &--require {
+            background-color: $red;
+          }
+          &--optional {
+            background-color: $gray;
+          }
+        }
+        &__input {
+          height: 2.0rem;
+          width: 100%;
+          border-radius: 0.5rem;
+          border: 1px solid $gray;
+          background-color: $white;
+          line-height: 2.0rem;
+          font-size: 1.0rem;
+        }
+        &__submit-btn {
+          display: block;
+          width: 100%;
+          height: 2.0rem;
+          margin: 0 auto;
+          background-color: $red;
+          border: 1px solid $red;
+          font-size: 1.0rem;
+          line-height: 2.0rem;
+          color: $white;
+          -webkit-transition: all ease-out .3s;
+          transition: all ease-out .3s;
+          cursor: pointer;
+          &:hover {
+            opacity: 0.7;
+          }
         }
       }
     }
