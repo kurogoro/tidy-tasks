@@ -357,8 +357,11 @@
     min-height: calc(100vh - 5.5rem + 2px);
     margin: 0 auto;
     background: $dark-white;
+    &--wide {
+      width: 50rem;
+    }
     &__group {
-      width: 20rem;
+      width: 75%;
       margin: 0 auto;
       padding: 0.6rem 0;
       &--border-bottom {
@@ -403,6 +406,7 @@
         &__input {
           height: 2.0rem;
           width: 100%;
+          overflow: scroll;
           border-radius: 0.5rem;
           border: 1px solid $gray;
           background-color: $white;
@@ -424,6 +428,79 @@
           cursor: pointer;
           &:hover {
             opacity: 0.7;
+          }
+        }
+      }
+      &__double-field {
+        @include clearfix();
+        &__group {
+          float: left;
+          width: calc(18rem + 2px);
+          height: 20rem;
+          &--left {
+            float: left;
+          }
+          &--right {
+            float: right;
+          }
+          &__field-box {
+            width: 100%;
+            overflow: scroll;
+            padding-bottom: 0.5rem;
+            &--list-box {
+              height: calc(16rem + 2px);
+              background-color: $white;
+              border: 1px solid $gray;
+              padding: 0;
+            }
+            &__title {
+              width: 100%;
+              font-size: 1.0rem;
+              top: 0;
+              z-index: 10;
+              background-color: $dark-white;
+            }
+            &__field {
+              width: 100%;
+              height: 1.5rem;
+              position: relative;
+              margin-bottom: 0.5rem;
+              background-color: $white;
+              &__mark {
+                display: inline-block;
+                position: absolute;
+                width: 3.0rem;
+                top: 0.2rem;
+                font-size: 0.7rem;
+                text-align: center;
+              }
+              &__text {
+                display: inline-block;
+                position: absolute;
+                width: 13.5rem;
+                overflow: scroll;
+                font-size: 1.0rem;
+                left: 3.0rem;
+              }
+              &__btn {
+                display: inline-block;
+                position: absolute;
+                right: 0.5rem;
+                top: 0.2rem;
+                font-size: 0.7rem;
+                line-height: 1.5erm;
+                color: $red;
+              }
+              &__input {
+                width: 18rem;
+                height: 1.5rem;
+                color: $black;
+                border-radius: 0.5rem;
+                border: 1px solid $gray;
+                background-color: $white;
+                font-size: 1.0rem;
+              }
+            }
           }
         }
       }
