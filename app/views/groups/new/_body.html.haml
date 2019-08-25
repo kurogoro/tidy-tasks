@@ -1,0 +1,48 @@
+= form_for @group, html: { class: ["main-page__body__form", "main-page__body__form--wide"] } do |f|
+  .main-page__body__form__group.main-page__body__form__group--border-bottom
+    .main-page__body__form__group__field
+      .main-page__body__form__group__field__title
+        グループ作成
+  .main-page__body__form__group
+    .main-page__body__form__group__field
+      = f.label :name, "グループ名", class: "main-page__body__form__group__field__label"
+      %span.main-page__body__form__group__field__mark.main-page__body__form__group__field__mark--require 必須
+      = f.text_field :name, placeholder: "例) ティディベアフロック", class: "main-page__body__form__group__field__input"
+  .main-page__body__form__group
+    .main-page__body__form__group__double-field
+      .main-page__body__form__group__double-field__group.main-page__body__form__group__double-field__group--left
+        .main-page__body__form__group__double-field__group__field-box
+          .main-page__body__form__group__double-field__group__field-box__title
+            メンバーリスト
+          .main-page__body__form__group__double-field__group__field-box__field
+            = f.text_field :member_ids, name: "group[member_ids][]", type: "hidden", value: current_person.id
+            = f.text_field :administrator_id, name: "group[administrator_id]", type: "hidden", value: current_person.id
+            .main-page__body__form__group__double-field__group__field-box__field__mark
+              管理者
+            .main-page__body__form__group__double-field__group__field-box__field__text
+              = current_person.nickname
+        #member-list.main-page__body__form__group__double-field__group__field-box.main-page__body__form__group__double-field__group__field-box--list-box
+          - @group.members.each do |member|
+            - unless member.id == current_person.id
+              .main-page__body__form__group__double-field__group__field-box__field
+                = f.text_field :member_ids, name: "group[member_ids][]", type: "hidden", value: member.id
+                .main-page__body__form__group__double-field__group__field-box__field__text
+                  = member.nickname
+                .main-page__body__form__group__double-field__group__field-box__field__btn.main-page__body__form__group__double-field__group__field-box__field__btn--remove{ data: { person: { id: member.id, nickname: member.nickname } } }
+                  = icon 'fas', 'times', class: "main-page__body__form__group__double-field__group__field-box__field__btn__icon"
+      .main-page__body__form__group__double-field__group.main-page__body__form__group__double-field__group--right
+        .main-page__body__form__group__double-field__group__field-box
+          .main-page__body__form__group__double-field__group__field-box__title
+            メンバー検索
+          .main-page__body__form__group__double-field__group__field-box__field
+            %input#member-search-input.main-page__body__form__group__double-field__group__field-box__field__input{ placeholder: "ユーザー名を検索", type: "text" }
+        #member-search-list.main-page__body__form__group__double-field__group__field-box.main-page__body__form__group__double-field__group__field-box--list-box
+          -# - 20.times do
+          -#   .main-page__body__form__group__double-field__group__field-box__field
+          -#     .main-page__body__form__group__double-field__group__field-box__field__text
+          -#       = "検索ユーザー名"
+          -#     .main-page__body__form__group__double-field__group__field-box__field__btn.main-page__body__form__group__double-field__group__field-box__field__btn--add{data: { person: { id: "number", nickname: "nickname" } }}
+          -#       = icon 'fas', 'plus', class: "main-page__body__form__group__double-field__group__field-box__field__btn__icon"
+  .main-page__body__form__group
+    .main-page__body__form__group__field
+      = f.submit "グループ作成", class: "main-page__body__form__group__field__submit-btn"
