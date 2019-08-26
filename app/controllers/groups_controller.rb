@@ -10,6 +10,13 @@ class GroupsController < ApplicationController
       render :new
     end
   end
+  def search
+    @groups = Group.where.not(id: search_params[:group_ids]).where('name LIKE(?)', "#{search_params[:keyword]}%")
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
 
   private
   def create_group_params
@@ -17,6 +24,9 @@ class GroupsController < ApplicationController
   end
   def create_member_params
     params.require(:group).permit({ member_ids: [] })
+  end
+  def search_params
+    params.permit(:keyword, { group_ids: [] })
   end
   def group_save
     Group.transaction do
