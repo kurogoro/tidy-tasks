@@ -413,6 +413,15 @@
           line-height: 2.0rem;
           font-size: 1.0rem;
         }
+        &__input-area {
+          height: 8.0rem;
+          width: 100%;
+          border-radius: 0.5rem;
+          border: 1px solid $gray;
+          background-color: $white;
+          line-height: 2.0rem;
+          font-size: 1.0rem;
+        }
         &__submit-btn {
           display: block;
           width: 100%;

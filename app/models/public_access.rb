@@ -1,6 +1,6 @@
 class PublicAccess < ActiveHash::Base
   self.data = [
-      {id: 0, name: 'private'},
-      {id: 1, name: 'public'}
+      {id: 0, name: '非公開'},
+      {id: 1, name: '公開'}
   ]
 end
