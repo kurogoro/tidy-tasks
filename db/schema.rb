@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_17_031957) do
+ActiveRecord::Schema.define(version: 2019_08_26_073009) do
 
   create_table "group_members", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "member_id"
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 2019_08_17_031957) do
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_project_groups_on_group_id"
     t.index ["project_id"], name: "index_project_groups_on_project_id"
+  end
+
+  create_table "project_members", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "project_id"
+    t.bigint "member_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_project_members_on_member_id"
+    t.index ["project_id"], name: "index_project_members_on_project_id"
   end
 
   create_table "projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -98,6 +107,8 @@ ActiveRecord::Schema.define(version: 2019_08_17_031957) do
   add_foreign_key "groups", "people", column: "administrator_id"
   add_foreign_key "project_groups", "groups"
   add_foreign_key "project_groups", "projects"
+  add_foreign_key "project_members", "people", column: "member_id"
+  add_foreign_key "project_members", "projects"
   add_foreign_key "projects", "people", column: "administrator_id"
   add_foreign_key "task_people", "people"
   add_foreign_key "task_people", "tasks"
