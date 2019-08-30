@@ -1,0 +1,50 @@
+.main-page__body__form.main-page__body__form--with-sidebar
+  .main-page__body__form__group
+    .main-page__body__form__group__double-field
+      .main-page__body__form__group__double-field__group.main-page__body__form__group__double-field__group--left
+        .main-page__body__form__group__double-field__group__field-box
+          .main-page__body__form__group__double-field__group__field-box__title
+            参加プロジェクト
+          = link_to "新規プロジェクト作成", new_project_path, class: "main-page__body__form__group__double-field__group__field-box__btn"
+        #project-list.main-page__body__form__group__double-field__group__field-box.main-page__body__form__group__double-field__group__field-box--list-box{ data: { save: "true" } }
+          - current_person.belonged_projects.each do |project|
+            .main-page__body__form__group__double-field__group__field-box__field
+              - if project.administrator == current_person
+                .main-page__body__form__group__double-field__group__field-box__field__mark
+                  管理者
+              .main-page__body__form__group__double-field__group__field-box__field__text
+                = project.name
+              - unless project.administrator == current_person
+                .main-page__body__form__group__double-field__group__field-box__field__btn.main-page__body__form__group__double-field__group__field-box__field__btn--remove{ data: { project: { id: project.id, name: project.name } } }
+                  = icon 'fas', 'times', class: "main-page__body__form__group__double-field__group__field-box__field__btn__icon"
+      .main-page__body__form__group__double-field__group.main-page__body__form__group__double-field__group--right
+        .main-page__body__form__group__double-field__group__field-box
+          .main-page__body__form__group__double-field__group__field-box__title
+            プロジェクト検索
+          .main-page__body__form__group__double-field__group__field-box__field
+            %input#project-search-input.main-page__body__form__group__double-field__group__field-box__field__input{ placeholder: "プロジェクト名を検索", type: "text" }
+        #project-search-list.main-page__body__form__group__double-field__group__field-box.main-page__body__form__group__double-field__group__field-box--list-box
+    .main-page__body__form__group__double-field
+      .main-page__body__form__group__double-field__group.main-page__body__form__group__double-field__group--left
+        .main-page__body__form__group__double-field__group__field-box
+          .main-page__body__form__group__double-field__group__field-box__title
+            参加グループ
+          = link_to "新規グループ作成", new_group_path, class: "main-page__body__form__group__double-field__group__field-box__btn"
+        #group-list.main-page__body__form__group__double-field__group__field-box.main-page__body__form__group__double-field__group__field-box--list-box{ data: { save: "true" } }
+          - current_person.belonged_groups.each do |group|
+            .main-page__body__form__group__double-field__group__field-box__field
+              - if group.administrator == current_person
+                .main-page__body__form__group__double-field__group__field-box__field__mark
+                  管理者
+              .main-page__body__form__group__double-field__group__field-box__field__text
+                = group.name
+              - unless group.administrator == current_person
+                .main-page__body__form__group__double-field__group__field-box__field__btn.main-page__body__form__group__double-field__group__field-box__field__btn--remove{ data: { group: { id: group.id, name: group.name } } }
+                  = icon 'fas', 'times', class: "main-page__body__form__group__double-field__group__field-box__field__btn__icon"
+      .main-page__body__form__group__double-field__group.main-page__body__form__group__double-field__group--right
+        .main-page__body__form__group__double-field__group__field-box
+          .main-page__body__form__group__double-field__group__field-box__title
+            グループ検索
+          .main-page__body__form__group__double-field__group__field-box__field
+            %input#group-search-input.main-page__body__form__group__double-field__group__field-box__field__input{ placeholder: "グループ名を検索", type: "text" }
+        #group-search-list.main-page__body__form__group__double-field__group__field-box.main-page__body__form__group__double-field__group__field-box--list-box
