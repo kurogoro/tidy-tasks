@@ -70,18 +70,61 @@ $(document).on('turbolinks:load', function() {
     preword = input;
   }
 
+  function addGroupToDb(group_id) {
+    $.ajax({
+      type: 'GET',
+      url: '/people/add_group',
+      data: { group_id: group_id },
+      dataType: 'json'
+    })
+
+    .done(function() {
+      // notice('グループを追加しました');
+    })
+
+    .fail(function() {
+      // alert('グループ追加に失敗しました');
+    })
+  }
+
+  function removeGroupToDb(group_id) {
+    $.ajax({
+      type: 'GET',
+      url: '/people/remove_group',
+      data: { group_id: group_id },
+      dataType: 'json'
+    })
+
+    .done(function() {
+      // notice('グループを脱退しました');
+    })
+
+    .fail(function() {
+      console.log(8);
+      // alert('グループ脱退に失敗しました');
+    })
+  }
+
   search_input.on("keyup", function() {
     searchGroup(false);
   });
 
   search_list.on("click", ".main-page__body__form__group__double-field__group__field-box__field__btn--add", function() {
     var group = getGroup($(this));
+    var dbSave = group_list.data("save");
+    if (dbSave === true) {
+      addGroupToDb(group.id);
+    }
     $(this).parent().remove();
     appendGroup(group);
   })
 
   group_list.on("click", ".main-page__body__form__group__double-field__group__field-box__field__btn--remove", function() {
     var group = getGroup($(this));
+    var dbSave = group_list.data("save");
+    if (dbSave === true) {
+      removeGroupToDb(group.id);
+    }
     $(this).parent().remove();
     preword = "";
     searchGroup(true);
