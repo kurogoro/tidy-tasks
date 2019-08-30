@@ -9,6 +9,13 @@ class ProjectsController < ApplicationController
       render :new
     end
   end
+  def search
+    @projects = Project.where.not(id: search_params[:project_ids]).where('name LIKE(?)', "#{search_params[:keyword]}%")
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
 
   private
   def create_project_params
@@ -16,6 +23,9 @@ class ProjectsController < ApplicationController
   end
   def create_group_params
     params.require(:project).permit({ group_ids: [] })
+  end
+  def search_params
+    params.permit(:keyword, { project_ids: [] })
   end
   def project_save
     Project.transaction do
