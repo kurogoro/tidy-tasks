@@ -32,7 +32,7 @@
               管理者
             .main-page__body__form__group__double-field__group__field-box__field__text
               = current_person.nickname
-        #group-list.main-page__body__form__group__double-field__group__field-box.main-page__body__form__group__double-field__group__field-box--list-box
+        #group-list.main-page__body__form__group__double-field__group__field-box.main-page__body__form__group__double-field__group__field-box--list-box{ data: { save: "false" } }
           - @project.groups.each do |group|
             .main-page__body__form__group__double-field__group__field-box__field
               = f.text_field :group_ids, name: "project[group_ids][]", type: "hidden", value: group.id
