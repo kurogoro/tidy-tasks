@@ -385,8 +385,11 @@
           line-height: 1.5rem;
         }
         &__text {
-          text-align: right;
-          font-size: 0.7rem;
+          font-size: 1.0rem;
+          &--right-small {
+            text-align: right;
+            font-size: 0.7rem;
+          }
           &__link {
             color: $blue;
             text-decoration: underline;

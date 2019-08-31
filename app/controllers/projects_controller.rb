@@ -9,6 +9,15 @@ class ProjectsController < ApplicationController
       render :new
     end
   end
+  def show
+    @project = Project.find(show_params[:id])
+    if @project.members.include?(current_person)
+      @own_tasks = []
+      @project.tasks.each do |task|
+        @own_tasks << task if task.members.include?(current_person)
+      end
+    end
+  end
   def search
     @projects = Project.where.not(id: search_params[:project_ids]).where('name LIKE(?)', "#{search_params[:keyword]}%")
     respond_to do |format|
@@ -23,6 +32,9 @@ class ProjectsController < ApplicationController
   end
   def create_group_params
     params.require(:project).permit({ group_ids: [] })
+  end
+  def show_params
+    params.permit(:id)
   end
   def search_params
     params.permit(:keyword, { project_ids: [] })

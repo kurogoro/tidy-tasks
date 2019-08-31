@@ -1,0 +1,64 @@
+.main-page__body__form.main-page__body__form--with-sidebar
+  .main-page__body__form__group
+    .main-page__body__form__group__field
+      .main-page__body__form__group__field__label プロジェクト名
+      .main-page__body__form__group__field__text
+        = @project.name
+    .main-page__body__form__group__field
+      .main-page__body__form__group__field__label 締切り日
+      .main-page__body__form__group__field__text
+        = @project.deadline
+    .main-page__body__form__group__field
+      .main-page__body__form__group__field__label 公開・非公開設定
+      .main-page__body__form__group__field__text
+        = @project.public_access.name
+    .main-page__body__form__group__field
+      .main-page__body__form__group__field__label 詳細
+      .main-page__body__form__group__field__text
+        = @project.detail
+  .main-page__body__form__group
+    .main-page__body__form__group__double-field
+      .main-page__body__form__group__double-field__group.main-page__body__form__group__double-field__group--left
+        .main-page__body__form__group__double-field__group__field-box
+          .main-page__body__form__group__double-field__group__field-box__title
+            参加グループリスト
+        .main-page__body__form__group__double-field__group__field-box.main-page__body__form__group__double-field__group__field-box--list-box
+          - @project.groups.each do |group|
+            .main-page__body__form__group__double-field__group__field-box__field
+              = link_to group.name, group_path(group.id), class: "main-page__body__form__group__double-field__group__field-box__field__text"
+      .main-page__body__form__group__double-field__group.main-page__body__form__group__double-field__group--right
+        .main-page__body__form__group__double-field__group__field-box
+          .main-page__body__form__group__double-field__group__field-box__title
+            参加メンバーリスト
+        .main-page__body__form__group__double-field__group__field-box.main-page__body__form__group__double-field__group__field-box--list-box
+          - @project.members.each do |member|
+            .main-page__body__form__group__double-field__group__field-box__field
+              - if member == @project.administrator
+                .main-page__body__form__group__double-field__group__field-box__field__mark
+                  管理者
+              .main-page__body__form__group__double-field__group__field-box__field__text
+                = member.nickname
+  .main-page__body__form__group
+    - if @project.members.include?(current_person)
+      .main-page__body__form__group__double-field
+        .main-page__body__form__group__double-field__group.main-page__body__form__group__double-field__group--left
+          .main-page__body__form__group__double-field__group__field-box
+            .main-page__body__form__group__double-field__group__field-box__title
+              タスク一覧
+            = link_to "新規タスク作成", new_task_path, class: "main-page__body__form__group__double-field__group__field-box__btn"
+          #task-list.main-page__body__form__group__double-field__group__field-box.main-page__body__form__group__double-field__group__field-box--list-box{ data: { save: "true" } }
+          - @own_tasks.each do |task|
+            .main-page__body__form__group__double-field__group__field-box__field
+              = link_to task.name, task_path(task.id), class: "main-page__body__form__group__double-field__group__field-box__field__text"
+              .main-page__body__form__group__double-field__group__field-box__field__btn.main-page__body__form__group__double-field__group__field-box__field__btn--remove{ data: { task: { id: task.id, name: task.name } } }
+                = icon 'fas', 'times', class: "main-page__body__form__group__double-field__group__field-box__field__btn__icon"
+        .main-page__body__form__group__double-field__group.main-page__body__form__group__double-field__group--right
+          .main-page__body__form__group__double-field__group__field-box
+            .main-page__body__form__group__double-field__group__field-box__title
+              タスク検索
+            .main-page__body__form__group__double-field__group__field-box__field
+              %input#task-search-input.main-page__body__form__group__double-field__group__field-box__field__input{ placeholder: "プロジェクト名を検索", type: "text" }
+          #task-search-list.main-page__body__form__group__double-field__group__field-box.main-page__body__form__group__double-field__group__field-box--list-box
+    - else
+      .main-page__body__form__group__field
+        = link_to "このプロジェクトに参加する", "", class: "main-page__body__form__group__field__submit-btn"

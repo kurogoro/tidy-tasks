@@ -6,7 +6,7 @@ $(document).on('turbolinks:load', function() {
 
   function appendSearchGroup(group) {
     var html = `<div class="main-page__body__form__group__double-field__group__field-box__field">
-                  <div class="main-page__body__form__group__double-field__group__field-box__field__text">${ group.name }</div>
+                  <a class="main-page__body__form__group__double-field__group__field-box__field__text" href="/groups/${ group.id }">${ group.name }</a>
                   <div class="main-page__body__form__group__double-field__group__field-box__field__btn main-page__body__form__group__double-field__group__field-box__field__btn--add" data-group-id="${ group.id }" data-group-name="${ group.name }">
                     <i class="fas fa-plus main-page__body__form__group__double-field__group__field-box__field__btn__icon"></i>
                   </div>
@@ -17,9 +17,9 @@ $(document).on('turbolinks:load', function() {
   function appendGroup(group) {
     var html = `<div class="main-page__body__form__group__double-field__group__field-box__field">
                   <input name="project[group_ids][]" type="hidden" value="${ group.id }">
-                  <div class="main-page__body__form__group__double-field__group__field-box__field__text">${ group.name }</div>
+                  <a class="main-page__body__form__group__double-field__group__field-box__field__text" href="/groups/${ group.id }">${ group.name }</a>
                   <div class="main-page__body__form__group__double-field__group__field-box__field__btn main-page__body__form__group__double-field__group__field-box__field__btn--remove" data-group-id="${ group.id }" data-group-name="${ group.name }">
-                  <i class="fas fa-times main-page__body__form__group__double-field__group__field-box__field__btn__icon"></i>
+                    <i class="fas fa-times main-page__body__form__group__double-field__group__field-box__field__btn__icon"></i>
                   </div>
                 </div>`
     group_list.append(html);

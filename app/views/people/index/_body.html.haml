@@ -12,8 +12,7 @@
               - if project.administrator == current_person
                 .main-page__body__form__group__double-field__group__field-box__field__mark
                   管理者
-              .main-page__body__form__group__double-field__group__field-box__field__text
-                = project.name
+              = link_to project.name, project_path(project.id), class: "main-page__body__form__group__double-field__group__field-box__field__text"
               - unless project.administrator == current_person
                 .main-page__body__form__group__double-field__group__field-box__field__btn.main-page__body__form__group__double-field__group__field-box__field__btn--remove{ data: { project: { id: project.id, name: project.name } } }
                   = icon 'fas', 'times', class: "main-page__body__form__group__double-field__group__field-box__field__btn__icon"
@@ -36,8 +35,7 @@
               - if group.administrator == current_person
                 .main-page__body__form__group__double-field__group__field-box__field__mark
                   管理者
-              .main-page__body__form__group__double-field__group__field-box__field__text
-                = group.name
+              = link_to group.name, group_path(group.id), class: "main-page__body__form__group__double-field__group__field-box__field__text"
               - unless group.administrator == current_person
                 .main-page__body__form__group__double-field__group__field-box__field__btn.main-page__body__form__group__double-field__group__field-box__field__btn--remove{ data: { group: { id: group.id, name: group.name } } }
                   = icon 'fas', 'times', class: "main-page__body__form__group__double-field__group__field-box__field__btn__icon"

@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
   devise_for :people
   root 'tasks#index'
-  resources :projects, only: [:new, :create] do
+  resources :projects, only: [:new, :create, :show] do
     collection do
       get 'search'
     end
   end
-  resources :tasks, only: [:index]
-  resources :groups, only: [:new, :create] do
+  resources :tasks, only: [:index, :new, :create, :show] do
+    collection do
+      get 'search'
+    end
+  end
+  resources :groups, only: [:new, :create, :show] do
     collection do
       get 'search'
     end
@@ -19,6 +23,8 @@ Rails.application.routes.draw do
       get 'remove_group'
       get 'add_project'
       get 'remove_project'
+      get 'add_task'
+      get 'remove_task'
     end
   end
 end

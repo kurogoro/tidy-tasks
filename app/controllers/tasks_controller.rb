@@ -6,7 +6,19 @@ class TasksController < ApplicationController
     @days = set_days(@first_day, @last_day)
   end
 
+  def search
+    @tasks = Task.where.not(id: search_params[:task_ids]).where('name LIKE(?)', "#{search_params[:keyword]}%")
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+
   private
+
+  def search_params
+    params.permit(:keyword, { task_ids: [] })
+  end
 
   def set_days(first_day, last_day)
     days = []

@@ -6,7 +6,7 @@ $(document).on('turbolinks:load', function() {
 
   function appendSearchProject(project) {
     var html = `<div class="main-page__body__form__group__double-field__group__field-box__field">
-                  <div class="main-page__body__form__group__double-field__group__field-box__field__text">${ project.name }</div>
+                  <a class="main-page__body__form__group__double-field__group__field-box__field__text" href="/projects/${ project.id }">${ project.name }</a>
                   <div class="main-page__body__form__group__double-field__group__field-box__field__btn main-page__body__form__group__double-field__group__field-box__field__btn--add" data-project-id="${ project.id }" data-project-name="${ project.name }">
                     <i class="fas fa-plus main-page__body__form__group__double-field__group__field-box__field__btn__icon"></i>
                   </div>
@@ -17,9 +17,9 @@ $(document).on('turbolinks:load', function() {
   function appendProject(project) {
     var html = `<div class="main-page__body__form__group__double-field__group__field-box__field">
                   <input name="project[group_ids][]" type="hidden" value="${ project.id }">
-                  <div class="main-page__body__form__group__double-field__group__field-box__field__text">${ project.name }</div>
+                  <a class="main-page__body__form__group__double-field__group__field-box__field__text" href="/projects/${ project.id }">${ project.name }</a>
                   <div class="main-page__body__form__group__double-field__group__field-box__field__btn main-page__body__form__group__double-field__group__field-box__field__btn--remove" data-project-id="${ project.id }" data-project-name="${ project.name }">
-                  <i class="fas fa-times main-page__body__form__group__double-field__group__field-box__field__btn__icon"></i>
+                    <i class="fas fa-times main-page__body__form__group__double-field__group__field-box__field__btn__icon"></i>
                   </div>
                 </div>`
     project_list.append(html);

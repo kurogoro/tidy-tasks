@@ -13,8 +13,8 @@ class Person < ApplicationRecord
   has_many :belonged_groups, class_name: 'Group', through: :group_members, source: :group
   has_many :project_members, foreign_key: 'member_id'
   has_many :belonged_projects, class_name: 'Project', through: :project_members, source: :project
-  has_many :task_people
-  has_many :tasks, through: :task_people
+  has_many :task_members, foreign_key: 'member_id'
+  has_many :tasks, through: :task_members
 
   def email_required?
     false
